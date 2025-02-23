@@ -4,41 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF Flipbook</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <!-- Load dependencies with specific versions -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel/7.22.20/babel.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .debug-info {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background: #f0f0f0;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
+    <!-- Add a debug div -->
+    <div id="debug" class="debug-info">Loading...</div>
     <div id="flipbook-root"></div>
 
     <script type="text/babel">
+        // Debug helper
+        const debug = (message) => {
+            const debugDiv = document.getElementById('debug');
+            debugDiv.innerHTML += '<br>' + message;
+        };
+
+        debug('Script started');
+
         const { useState, useEffect } = React;
 
         const PDFFlipbook = () => {
             const [currentPage, setCurrentPage] = useState(1);
             const [totalPages, setTotalPages] = useState(1);
-            const [pageUrls, setPageUrls] = useState([]);
+            const [error, setError] = useState(null);
             const [isLoading, setIsLoading] = useState(true);
 
             useEffect(() => {
-                // Initialize PDF.js
-                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+                debug('Component mounted');
                 
-                // Replace this URL with your PDF URL
-                const pdfUrl = 'https://cdnc.heyzine.com/files/uploaded/434fce1e1e037d78b9404a74dd6748d3b4a57ef9.pdf';
+                // Initialize PDF.js with explicit worker
+                const workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+                pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
+                
+                debug('PDF.js worker initialized');
+
+                // Replace this with your PDF URL - start with a test PDF
+                const pdfUrl = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf';
                 
                 loadPDF(pdfUrl);
             }, []);
 
             const loadPDF = async (url) => {
+                debug('Starting to load PDF from: ' + url);
                 try {
-                    const pdf = await pdfjsLib.getDocument(url).promise;
+                    const loadingTask = pdfjsLib.getDocument(url);
+                    debug('PDF loading task created');
+                    
+                    const pdf = await loadingTask.promise;
+                    debug('PDF loaded successfully');
+                    
                     setTotalPages(pdf.numPages);
                     setIsLoading(false);
+                    debug('Total pages: ' + pdf.numPages);
                 } catch (error) {
-                    console.error('Error loading PDF:', error);
+                    debug('Error loading PDF: ' + error.message);
+                    setError(error.message);
                     setIsLoading(false);
                 }
             };
@@ -55,20 +91,6 @@
                 }
             };
 
-            // Handle keyboard navigation
-            useEffect(() => {
-                const handleKeyPress = (e) => {
-                    if (e.key === 'ArrowLeft') {
-                        goToPreviousPage();
-                    } else if (e.key === 'ArrowRight') {
-                        goToNextPage();
-                    }
-                };
-
-                window.addEventListener('keydown', handleKeyPress);
-                return () => window.removeEventListener('keydown', handleKeyPress);
-            }, [currentPage]);
-
             return (
                 <div className="w-full max-w-4xl mx-auto p-4">
                     <div className="relative bg-white rounded-lg shadow-lg">
@@ -76,6 +98,10 @@
                             {isLoading ? (
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     Loading PDF...
+                                </div>
+                            ) : error ? (
+                                <div className="absolute inset-0 flex items-center justify-center text-red-500">
+                                    Error: {error}
                                 </div>
                             ) : (
                                 <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-gray-300">
@@ -87,11 +113,9 @@
                                 <button
                                     onClick={goToPreviousPage}
                                     disabled={currentPage === 1}
-                                    className={`p-2 rounded-full ${
-                                        currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-200'
-                                    }`}
+                                    className="p-2 rounded-full bg-gray-200"
                                 >
-                                    ←
+                                    Previous
                                 </button>
                                 <span className="flex items-center text-gray-600">
                                     Page {currentPage} of {totalPages}
@@ -99,11 +123,9 @@
                                 <button
                                     onClick={goToNextPage}
                                     disabled={currentPage === totalPages}
-                                    className={`p-2 rounded-full ${
-                                        currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-200'
-                                    }`}
+                                    className="p-2 rounded-full bg-gray-200"
                                 >
-                                    →
+                                    Next
                                 </button>
                             </div>
                         </div>
@@ -112,7 +134,13 @@
             );
         };
 
-        ReactDOM.render(<PDFFlipbook />, document.getElementById('flipbook-root'));
+        debug('Attempting to render component');
+        try {
+            ReactDOM.render(<PDFFlipbook />, document.getElementById('flipbook-root'));
+            debug('Component rendered successfully');
+        } catch (error) {
+            debug('Error rendering component: ' + error.message);
+        }
     </script>
 </body>
 </html>
