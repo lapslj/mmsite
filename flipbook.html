@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Flipbook</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel/7.22.20/babel.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="flipbook-root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const PDFFlipbook = () => {
+            const [currentPage, setCurrentPage] = useState(1);
+            const [totalPages, setTotalPages] = useState(1);
+            const [pageUrls, setPageUrls] = useState([]);
+            const [isLoading, setIsLoading] = useState(true);
+
+            useEffect(() => {
+                // Initialize PDF.js
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+                
+                // Replace this URL with your PDF URL
+                const pdfUrl = 'https://cdnc.heyzine.com/files/uploaded/434fce1e1e037d78b9404a74dd6748d3b4a57ef9.pdf';
+                
+                loadPDF(pdfUrl);
+            }, []);
+
+            const loadPDF = async (url) => {
+                try {
+                    const pdf = await pdfjsLib.getDocument(url).promise;
+                    setTotalPages(pdf.numPages);
+                    setIsLoading(false);
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    setIsLoading(false);
+                }
+            };
+
+            const goToPreviousPage = () => {
+                if (currentPage > 1) {
+                    setCurrentPage(currentPage - 1);
+                }
+            };
+
+            const goToNextPage = () => {
+                if (currentPage < totalPages) {
+                    setCurrentPage(currentPage + 1);
+                }
+            };
+
+            // Handle keyboard navigation
+            useEffect(() => {
+                const handleKeyPress = (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        goToPreviousPage();
+                    } else if (e.key === 'ArrowRight') {
+                        goToNextPage();
+                    }
+                };
+
+                window.addEventListener('keydown', handleKeyPress);
+                return () => window.removeEventListener('keydown', handleKeyPress);
+            }, [currentPage]);
+
+            return (
+                <div className="w-full max-w-4xl mx-auto p-4">
+                    <div className="relative bg-white rounded-lg shadow-lg">
+                        <div className="relative aspect-[3/4] w-full bg-gray-50 rounded-lg overflow-hidden">
+                            {isLoading ? (
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    Loading PDF...
+                                </div>
+                            ) : (
+                                <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-gray-300">
+                                    Page {currentPage}
+                                </div>
+                            )}
+
+                            <div className="absolute inset-x-0 bottom-0 flex justify-between p-4">
+                                <button
+                                    onClick={goToPreviousPage}
+                                    disabled={currentPage === 1}
+                                    className={`p-2 rounded-full ${
+                                        currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-200'
+                                    }`}
+                                >
+                                    ←
+                                </button>
+                                <span className="flex items-center text-gray-600">
+                                    Page {currentPage} of {totalPages}
+                                </span>
+                                <button
+                                    onClick={goToNextPage}
+                                    disabled={currentPage === totalPages}
+                                    className={`p-2 rounded-full ${
+                                        currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-200'
+                                    }`}
+                                >
+                                    →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<PDFFlipbook />, document.getElementById('flipbook-root'));
+    </script>
+</body>
+</html>
