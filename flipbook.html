@@ -4,143 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF Flipbook</title>
-    <!-- Load dependencies with specific versions -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.min.js"></script>
+    <!-- PDF.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel/7.22.20/babel.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        .debug-info {
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .pdf-viewer {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: #f5f5f5;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.9);
+        }
+        button {
+            padding: 8px 16px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        #pageCanvas {
+            width: 100%;
+            height: 100%;
+        }
+        #debug {
             position: fixed;
             bottom: 0;
             left: 0;
             background: #f0f0f0;
             padding: 10px;
             font-family: monospace;
-            font-size: 12px;
             z-index: 1000;
         }
     </style>
 </head>
 <body>
-    <!-- Add a debug div -->
-    <div id="debug" class="debug-info">Loading...</div>
-    <div id="flipbook-root"></div>
+    <div id="debug">Loading script...</div>
+    
+    <div class="container">
+        <div class="pdf-viewer">
+            <canvas id="pageCanvas"></canvas>
+            <div class="controls">
+                <button id="prevButton" onclick="previousPage()" disabled>Previous</button>
+                <span id="pageInfo">Page 1 of 1</span>
+                <button id="nextButton" onclick="nextPage()" disabled>Next</button>
+            </div>
+        </div>
+    </div>
 
-    <script type="text/babel">
+    <script>
         // Debug helper
-        const debug = (message) => {
-            const debugDiv = document.getElementById('debug');
-            debugDiv.innerHTML += '<br>' + message;
-        };
+        function debug(message) {
+            const debugEl = document.getElementById('debug');
+            debugEl.innerHTML += '<br>' + message;
+        }
 
         debug('Script started');
 
-        const { useState, useEffect } = React;
+        // PDF.js setup
+        let currentPage = 1;
+        let totalPages = 0;
+        let pdfDoc = null;
 
-        const PDFFlipbook = () => {
-            const [currentPage, setCurrentPage] = useState(1);
-            const [totalPages, setTotalPages] = useState(1);
-            const [error, setError] = useState(null);
-            const [isLoading, setIsLoading] = useState(true);
+        // Initialize PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-            useEffect(() => {
-                debug('Component mounted');
+        debug('PDF.js worker initialized');
+
+        // Test PDF URL
+        const url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf';
+
+        // Load the PDF
+        async function loadPDF() {
+            try {
+                debug('Loading PDF from: ' + url);
+                pdfDoc = await pdfjsLib.getDocument(url).promise;
+                debug('PDF loaded successfully');
                 
-                // Initialize PDF.js with explicit worker
-                const workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-                pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
+                totalPages = pdfDoc.numPages;
+                document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+                document.getElementById('nextButton').disabled = false;
                 
-                debug('PDF.js worker initialized');
-
-                // Replace this with your PDF URL - start with a test PDF
-                const pdfUrl = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf';
-                
-                loadPDF(pdfUrl);
-            }, []);
-
-            const loadPDF = async (url) => {
-                debug('Starting to load PDF from: ' + url);
-                try {
-                    const loadingTask = pdfjsLib.getDocument(url);
-                    debug('PDF loading task created');
-                    
-                    const pdf = await loadingTask.promise;
-                    debug('PDF loaded successfully');
-                    
-                    setTotalPages(pdf.numPages);
-                    setIsLoading(false);
-                    debug('Total pages: ' + pdf.numPages);
-                } catch (error) {
-                    debug('Error loading PDF: ' + error.message);
-                    setError(error.message);
-                    setIsLoading(false);
-                }
-            };
-
-            const goToPreviousPage = () => {
-                if (currentPage > 1) {
-                    setCurrentPage(currentPage - 1);
-                }
-            };
-
-            const goToNextPage = () => {
-                if (currentPage < totalPages) {
-                    setCurrentPage(currentPage + 1);
-                }
-            };
-
-            return (
-                <div className="w-full max-w-4xl mx-auto p-4">
-                    <div className="relative bg-white rounded-lg shadow-lg">
-                        <div className="relative aspect-[3/4] w-full bg-gray-50 rounded-lg overflow-hidden">
-                            {isLoading ? (
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    Loading PDF...
-                                </div>
-                            ) : error ? (
-                                <div className="absolute inset-0 flex items-center justify-center text-red-500">
-                                    Error: {error}
-                                </div>
-                            ) : (
-                                <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-gray-300">
-                                    Page {currentPage}
-                                </div>
-                            )}
-
-                            <div className="absolute inset-x-0 bottom-0 flex justify-between p-4">
-                                <button
-                                    onClick={goToPreviousPage}
-                                    disabled={currentPage === 1}
-                                    className="p-2 rounded-full bg-gray-200"
-                                >
-                                    Previous
-                                </button>
-                                <span className="flex items-center text-gray-600">
-                                    Page {currentPage} of {totalPages}
-                                </span>
-                                <button
-                                    onClick={goToNextPage}
-                                    disabled={currentPage === totalPages}
-                                    className="p-2 rounded-full bg-gray-200"
-                                >
-                                    Next
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        };
-
-        debug('Attempting to render component');
-        try {
-            ReactDOM.render(<PDFFlipbook />, document.getElementById('flipbook-root'));
-            debug('Component rendered successfully');
-        } catch (error) {
-            debug('Error rendering component: ' + error.message);
+                renderPage(currentPage);
+            } catch (error) {
+                debug('Error loading PDF: ' + error.message);
+            }
         }
+
+        // Render a specific page
+        async function renderPage(pageNumber) {
+            try {
+                debug('Rendering page ' + pageNumber);
+                const page = await pdfDoc.getPage(pageNumber);
+                const canvas = document.getElementById('pageCanvas');
+                const context = canvas.getContext('2d');
+
+                const viewport = page.getViewport({ scale: 1.5 });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                await page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                }).promise;
+
+                debug('Page rendered successfully');
+            } catch (error) {
+                debug('Error rendering page: ' + error.message);
+            }
+        }
+
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+                document.getElementById('nextButton').disabled = false;
+                if (currentPage === 1) {
+                    document.getElementById('prevButton').disabled = true;
+                }
+                renderPage(currentPage);
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+                document.getElementById('prevButton').disabled = false;
+                if (currentPage === totalPages) {
+                    document.getElementById('nextButton').disabled = true;
+                }
+                renderPage(currentPage);
+            }
+        }
+
+        // Start loading the PDF
+        loadPDF();
     </script>
 </body>
 </html>
