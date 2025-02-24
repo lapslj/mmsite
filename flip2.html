@@ -5,19 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF Flipbook</title>
     
-    <!-- Flipbook Viewer script -->
-    <script src="libs/flipbook-viewer/flipbookviewer.js"></script>
+    <style>
+        #flipbook {
+            width: 100%;
+            height: 800px;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
     <!-- Container for the flipbook -->
     <div id="flipbook"></div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const viewer = new FlipbookViewer({
-                container: document.getElementById('flipbook'),
-                pdf_url: 'https://cdnc.heyzine.com/files/uploaded/434fce1e1e037d78b9404a74dd6748d3b4a57ef9.pdf'
-            });
+    <script type="module">
+        import { FlipbookViewer } from './libs/flipbook-viewer/flipbookviewer.js';
+        
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('DOM loaded, initializing viewer');
+            try {
+                const viewer = new FlipbookViewer({
+                    container: document.getElementById('flipbook'),
+                    pdf_url: 'https://cdnc.heyzine.com/files/uploaded/434fce1e1e037d78b9404a74dd6748d3b4a57ef9.pdf'
+                });
+                console.log('Viewer initialized:', viewer);
+            } catch (error) {
+                console.error('Error initializing viewer:', error);
+            }
         });
     </script>
 </body>
