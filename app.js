@@ -3,7 +3,7 @@ function setTimeBasedTheme() {
     const body = document.body;
     
     // Remove any existing theme classes
-    body.classList.remove('morning', 'afternoon', 'evening', 'night');
+    // body.classList.remove('morning', 'afternoon', 'evening', 'night');
     
     // Add appropriate theme class based on time
     if (hour >= 5 && hour < 12) {
