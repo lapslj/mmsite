@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Flipbook</title>
+    
+    <!-- Flipbook Viewer files -->
+    <link rel="stylesheet" href="libs/flipbook-viewer/flipbook-viewer.css">
+    <script src="libs/flipbook-viewer/flipbook-viewer.js"></script>
+</head>
+<body>
+    <!-- Container for the flipbook -->
+    <div id="flipbook"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewer = new FlipbookViewer({
+                container: document.getElementById('flipbook'),
+                pdf_url: 'https://cdnc.heyzine.com/files/uploaded/434fce1e1e037d78b9404a74dd6748d3b4a57ef9.pdf'
+            });
+        });
+    </script>
+</body>
+</html>
