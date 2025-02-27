@@ -27,6 +27,12 @@ body.night {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+a {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  /* Other font properties */
+}
 h1 {
     color: #2c3e50;
     border-bottom: 2px solid #eee;
