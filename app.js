@@ -1,24 +1,34 @@
-function setTimeBasedTheme() {
-    const hour = new Date().getHours();
-    const container = document.body;
-    
-    // Remove any existing theme classes
-    container.classList.remove('morning', 'afternoon', 'evening', 'night');
-    
-    // Add appropriate theme class based on time
-    if (hour >= 5 && hour < 12) {
-      container.classList.add('morning');
-    } else if (hour >= 12 && hour < 17) {
-      container.classList.add('afternoon');
-    } else if (hour >= 17 && hour < 20) {
-      container.classList.add('evening');
-    } else {
-      container.classList.add('night');
-    }
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  const card = document.getElementById('card');
+  const successMessage = document.getElementById('success');
   
-  // Run when page loads
-  setTimeBasedTheme();
+  // Simple click handler to fade the card
+  card.addEventListener('click', function() {
+      // Fade out the card
+      card.style.transition = 'opacity 1s ease-in';
+      card.style.opacity = '0';
+      
+      // Show success message after animation
+      setTimeout(() => {
+          successMessage.style.display = 'block';
+          card.style.display = 'none';
+      }, 1000);
+  });
   
-  // Optionally check every minute for time changes
-  setInterval(setTimeBasedTheme, 60000);
+  // For touch devices
+  card.addEventListener('touchstart', function(e) {
+      e.preventDefault(); // Prevent default touch behavior
+  });
+  
+  card.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      // Trigger the same animation as click
+      card.style.transition = 'opacity 1s ease-in';
+      card.style.opacity = '0';
+      
+      setTimeout(() => {
+          successMessage.style.display = 'block';
+          card.style.display = 'none';
+      }, 1000);
+  });
+});
