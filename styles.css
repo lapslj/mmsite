@@ -37,10 +37,10 @@ body {
 }
 
 .card-slot-container {
-  position: relative; /* Not absolute */
-  top: auto; /* Remove any top positioning */
-  margin-top: 0; /* Remove any top margin */
-  align-self: center; /* Ensure vertical centering in flex parent */
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .card-slot {
@@ -106,7 +106,14 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  font-size: 38px;
+  font-size: 3vw;
+}
+
+.bottom-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vw;
 }
 
 .middle-content {

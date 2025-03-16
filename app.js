@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
           successMessage.style.display = 'block';
           card.style.display = 'none';
       }, 1000);
+
+        // Navigate after delay
+    setTimeout(function() {
+        window.location.href = 'index-old/home.html';
+      }, 1500);
   });
   
   // For touch devices
@@ -30,5 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
           successMessage.style.display = 'block';
           card.style.display = 'none';
       }, 1000);
+
+    // Navigate after delay
+    setTimeout(function() {
+        window.location.href = 'index-old/home.html';
+      }, 1500);
   });
 });
