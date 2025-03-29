@@ -12,7 +12,6 @@ body {
 }
 
 a {
-  font-size: 30px;
   color:#00ff00;
 }
 
@@ -47,11 +46,10 @@ a {
   flex-direction: column;
   justify-content: center;
   line-height: 2;
-  font-size: 24px;
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 4vh;
   text-align: center;
   font-weight: normal;
   letter-spacing: 3px;
@@ -61,14 +59,13 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  font-size: 35px;
+  font-size: 3vw;
 }
 
 .top-content {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  font-size: 38px;
 }
 
 .right-content {
