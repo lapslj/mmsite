@@ -1,5 +1,4 @@
 body {
-  background-color: #000;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -8,12 +7,29 @@ body {
   align-items: center;
   font-family: 'Press Start 2P', monospace;
   user-select: none;
-  background-color:aquamarine;
+  /* background-color:aquamarine; */
+  background-image: url('../pixels/clouds.jpg');
+  background-size: 100% 100%;
+  background-position: center;
 }
 
 a {
   color:#00ff00;
 }
+
+.submitlink {
+  color:#17f7ff;
+}
+
+.issuelink {
+  color:#fff34a;
+}
+
+.shoplink {
+  color:red;
+  text-shadow: 0 0 10px rgba(255,0,0,0);
+}
+
 
 .screen {
   position: relative;
