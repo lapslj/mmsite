@@ -1,0 +1,92 @@
+body {
+  background-color: #000;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Press Start 2P', monospace;
+  user-select: none;
+  background-color:aquamarine;
+}
+
+a {
+  font-size: 30px;
+  color:#00ff00;
+}
+
+.screen {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  background-color: #000;
+  border: 10px solid #222;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+  overflow: hidden;
+}
+
+.frame {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 5px solid #00ff00;
+  box-sizing: border-box;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #00ff00;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+.left-text, .right-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 2;
+  font-size: 24px;
+}
+
+h1 {
+  font-size: 24px;
+  text-align: center;
+  font-weight: normal;
+  letter-spacing: 3px;
+}
+
+.inner-frame {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 35px;
+}
+
+.top-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 38px;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
+  height: 250px;
+  text-align: justify;
+  direction:rtl;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  height: 250px;
+  text-align: justify;
+  direction:ltr;
+}

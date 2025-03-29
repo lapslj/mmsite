@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Navigate after delay
     setTimeout(function() {
-        window.location.href = 'index-old/home.html';
+        window.location.href = 'home.html';
       }, 1500);
   });
   
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Navigate after delay
     setTimeout(function() {
-        window.location.href = 'index-old/home.html';
+        window.location.href = 'home.html';
       }, 1500);
   });
 });
