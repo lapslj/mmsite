@@ -59,7 +59,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  font-size: 3vw;
+  font-size: 3vh;
 }
 
 .top-content {
