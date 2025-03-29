@@ -58,8 +58,7 @@ h1 {
 .inner-frame {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  font-size: 3vh;
+  align-items: center;
 }
 
 .top-content {
@@ -86,4 +85,14 @@ h1 {
   height: 250px;
   text-align: justify;
   direction:ltr;
+}
+
+.middle-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+  height: 250px;
+  font-size: 3vh;
 }
