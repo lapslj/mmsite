@@ -30,6 +30,11 @@ a {
   color:#fff34a;
 }
 
+.laundrylink {
+  color:magenta;
+}
+
+
 .shoplink {
   color:red;
   text-shadow: 0 0 10px rgba(255,0,0,0);
