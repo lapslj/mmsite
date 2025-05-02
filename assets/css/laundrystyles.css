@@ -21,7 +21,7 @@ body {
   box-sizing: border-box;
   padding: 40px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   color: #00ff00;
   font-size: 20px;
