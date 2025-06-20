@@ -1,0 +1,685 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>I’m a test piece</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2181505f-f113-8045-9b0d-db6aebf9e60b" class="page sans"><header><h1 class="page-title">I’m a test piece</h1><p class="page-description"></p></header><div class="page-body"><p id="2181505f-f113-8001-b227-c7fb383c0e8f" class="">Written by Test Author</p><p id="2181505f-f113-80ca-b2c6-e22ecfd48f12" class="">
+</p><p id="2181505f-f113-800c-97c7-ce6efe324983" class=""><strong>Performer Intros [Under the images]:</strong></p><p id="2181505f-f113-803c-ad1d-d22ebcea8958" class=""><strong>Mia Culpa:</strong> I tend to lean more goofy. I really love getting laughs more than anything. You can end up pigeonholing yourself a little bit, but I like to keep things lighthearted.</p><p id="2181505f-f113-806b-a31a-d96f4a76a34d" class=""><strong>Lee Lee Putian:</strong> I&#x27;ve always been a clown. My main way of connecting with people is through comedy. It&#x27;s very rare for me to be performing a piece that is not also telling a specific story.</p><p id="2181505f-f113-8036-85ec-d1dee543a7d9" class=""><strong>Sadie Sundown: </strong>This is in my bones. The showgirl, the glitter and the sequence of it all. […] I was like, oh my God, this is what it feels like to just be so fulfilled by art.</p><p id="2181505f-f113-8097-9d37-f7350c5f9cc6" class=""><strong>Tif Bucknor: </strong>My performance style is fun, campy, a little bratty, specifically when I’m doing burlesque.</p><p id="2181505f-f113-804e-ac9f-e678adaefc53" class=""><strong>Dolores Sweet: </strong>Burlesque is for anybody, drag is for anybody.</p><p id="2181505f-f113-804b-a5f8-c8cc21e29082" class=""><strong>“It took a while to get the confidence for it.”</strong></p><p id="2181505f-f113-80dd-b267-df30ffd32f5d" class=""><strong>TB: </strong>I&#x27;ve been performing my whole life. I was originally put in dance &amp; theater because someone told my mom it was good for kids with ADHD.</p><p id="2181505f-f113-8026-89bc-f2c0d176a837" class=""><strong>LLP:</strong> I’ve been in cabaret, musical theater, for more or less 20 years now. I really enjoy drag, but I&#x27;d never felt that I had something specific to contribute to it. I&#x27;m a vocalist, I have my own things that I do, but I was like, &quot;What am I bringing that’s special? Why should I be doing this in drag?&quot;</p><p id="2181505f-f113-80e0-9983-cd79fefea0a8" class=""><strong>MC:</strong> My background was in music, and in my current band, Your Friends In Hell, we had some burlesque and drag stuff in our performances sometimes. That was my first direct exposure to it.</p><p id="2181505f-f113-8008-8b9e-e0bec430f90b" class=""><strong>SS:</strong> Through circus, I was getting really confident in my own skin. Not just like outward appearance, but like what I&#x27;m capable of and the art that I can create with this physical body. This seemed like a very cool outlet.</p><p id="2181505f-f113-80a9-b905-c9791abfcc93" class=""><strong>LLP: </strong>I saw this awesome, delightful queen from Salem who was singing, and I thought &quot;Wait a second, I have a long list of [hypermasculine] songs, like musical theater characters or Disney characters where the point of the song is “I’m a man being a man.” I sing them all the time at home, but because I’m an AFAB person I was never, like, cast for those roles. And a light bulb went off: &quot;Hang on, I can do this if I go into drag.”</p><p id="2181505f-f113-8040-9fc2-ec64a49fd4d5" class=""><strong>MC:</strong> I applied to…Ain’t Mitzvahavin’, the Jewish drag and burlesque group. Just kind of like, I&#x27;ve never done this before; it looks really exciting; I&#x27;m gonna work really hard on it.</p><p id="2181505f-f113-8031-aa6d-c4c6bfcbb879" class=""><strong>DS: </strong>Slutcracker was kind of the first time I was exposed to burlesque and I immediately loved it.  It brought together my love for ballet, and then the whole stripping thing was very interesting to me but it took me a while to get the confidence for it.</p><p id="2181505f-f113-80d5-bd08-d1b039f49949" class=""><strong>TB:</strong> I was supposed to go to Slutcracker but the cast got COVID, then I think three different people encouraged me to audition, so I did, and then I actually was in the show before I ever saw it.</p><p id="2181505f-f113-8017-a0c1-eab3bbdd2a3c" class=""><strong>DS: </strong>I saw an ad for Harley&#x27;s Funhouse, the drag &amp; burlesque open stage in Worcester. I hadn&#x27;t realized that it was also burlesque because drag is heavily featured. So I went to it for almost a year, pretty regularly, before I decided to perform. I knew it was a drag scene mostly and I didn&#x27;t want to step on people’s toes [or] invade a space that wasn’t made for me. I really wanted to get a feel for whether it was really appropriate for me. And I’ve since learned, of course, burlesque is for anybody, drag is for anybody.</p><p id="2181505f-f113-80ba-b170-eed5f0ebbaf3" class=""><strong>SS: </strong>I had been going to [Lucky 13] for maybe a year and I was just watching the stage being like, man this is so cool, I love this. The expression is so raw. People are so broad in their areas of interest. The way that they hype up debut folks at Lucky 13 is super, super welcoming.</p><p id="2181505f-f113-8059-8f76-d38a35defd63" class=""><strong>DS: </strong>Lucky 13 in particular is a really amazing competition. They call it a competition, but it’s not really a big deal who wins, it&#x27;s more exposing you to being on stage. They also have professional photo and video for you, which is really nice when you&#x27;re first getting started, to have some promo materials, and mentorship.</p><p id="2181505f-f113-8030-9439-cf9d2a57b496" class=""><strong>LLP: </strong>So I was like, you know what? I&#x27;ll audition [for Ain’t Mitzvahavin’]. Why not? What&#x27;s the worst that will happen? So I auditioned, and I got the part of the king.</p><p id="2181505f-f113-80c1-a297-cb190b8436c3" class=""><strong>“I’m either gonna hate this and feel humiliated or I&#x27;m gonna probably get addicted to it.”</strong></p><p id="2181505f-f113-807c-a6ec-fb8dcf775b30" class=""><strong>TB: </strong>I don’t think I actually made the choice to perform. I didn&#x27;t realize I was taking the stage until probably opening night because it was like ‘oh yeah I&#x27;ll do the audition, I&#x27;ll do the rehearsals…and I genuinely forgot that that all meant performing it at some point too.</p><p id="2181505f-f113-80ae-becf-fb33e42a5acb" class=""><strong>LLP: </strong>I&#x27;m adjacent to a lot of drag performers, plenty of friends in drag, but I needed help constructing my drag identity and learning how to, you know, to put on a face. I&#x27;ve never done drag makeup before.</p><p id="2181505f-f113-808e-9e6e-edd2913a307e" class=""><strong>MC: </strong>I thought either I’m gonna hate this and feel humiliated or I&#x27;m gonna probably get addicted to it and wanna keep doing it. And it’s scary to get up there, be vulnerable in front of people but yeah, it is definitely addictive at least for me.</p><p id="2181505f-f113-80fb-bdaf-e3d3d39d5f40" class=""><strong>LLP:</strong> I was coming into an established troupe, a bunch of people who knew each other, [but] even though it&#x27;s a troupe, it&#x27;s such a supportive and awesome world. So as soon as I get there, I&#x27;m like, &quot;You cast me because you think I&#x27;m a good fit, but I don&#x27;t have any drag experience.&quot; And everybody was jumping to help me out! I got a whole tutorial from the show’s director… I watched him as he put a face on for a show, and he ended up adopting me as a drag son, which is really exciting for me.</p><p id="2181505f-f113-8099-82e7-ccdfe2c37d90" class=""><strong>MC:</strong> I was intimidated by drag initially because I didn&#x27;t really do drag that much. I was more like burlesque-focused, so I was like “oh I&#x27;d love to do Drag Stroll, but like that&#x27;s not really what I do” and everybody was like “no, you can do whatever you want at Drag Stroll”. It&#x27;s kind of an open talent stage, which is cool.</p><p id="2181505f-f113-80e9-a162-f854ca52db7c" class=""><strong>DS:</strong> I didn’t realize how much creativity went into it. I knew I would need to choreograph and find music, but I&#x27;ve gotten really down some rabbit holes. I&#x27;ve had to learn how to sew. I&#x27;m obsessed with rhinestone now, and I rhinestone the shit out of all my costumes.</p><p id="2181505f-f113-808f-83b7-fa52405ff610" class=""><strong>“Open to everyone is kind of the vibe.”</strong></p><p id="2181505f-f113-808d-97a1-ef2148641ca4" class=""><strong>SS: </strong>A really nice thing about the community is like, if you mess up, people will tell you, and you accept it and you change.The whole finale of [my first show] was a ketchup bottle, just confetti, and I learned that day…there is a wrong type of confetti! It sticks to the stage. I was very politely told by the stage kitten afterwards that it&#x27;s really hard to clean up.</p><p id="2181505f-f113-805d-b640-e60bbf19f134" class=""><strong>TB:</strong> I don&#x27;t think about [performing] a lot because what I love in the burlesque community, the dance community, is I love rehearsing. I love moving my body. I love creating and experiencing choreography. And I forget that usually that means you&#x27;ll have to perform it.</p><p id="2181505f-f113-80de-bdb5-db9b7cec28c7" class=""><strong>SS: </strong>I like to think of that weird shit first. What&#x27;s kind of something that&#x27;s weird and creative and fun that people will find interesting or entertaining? And then kind of like build a thing around that. If you can think of it, you can probably find a way to make it.</p><p id="2181505f-f113-80a2-b43c-ea2e40f24f82" class=""><strong>TB: </strong>The rehearsals are so fun, but we have two casts, cast A and cast B. But once the run starts…we split to do the shows. It’s one of my least favorite parts of the year because I&#x27;m missing half of the people I was in rehearsal with!</p><p id="2181505f-f113-80e7-a062-d163e434436f" class=""><strong>SS: </strong>There’s the circus to burlesque pipeline, the dance to burlesque pipeline, but also just, like…the average person. You don&#x27;t have to have a creative background. Folks exist who are just like…I want to. You could buy clothes from Goodwill and throw a couple rhinestones on them and that&#x27;s enough.</p><p id="2181505f-f113-80ac-a2a8-cc267b429fe0" class=""><strong>LLP: </strong>For me, I&#x27;m more of a drag thing. I don&#x27;t know how long this term has been around, but it&#x27;s really resonating with me. Last month, I saw an amazing singing drag thing…and I was like, Yes! You are who I want to be when I grow up in this space!</p><p id="2181505f-f113-8004-b9ca-f05ee00171a8" class=""><strong>DS: </strong>You’re using all your different creative muscles. I&#x27;ve started producing which is new for me and really fun. It&#x27;s not for everyone, but I love the graphic design of the flyers, organizing people, making sure they have their information in on time…it&#x27;s just like multifaceted in a way that I didn&#x27;t realize. You&#x27;re using all your different creative muscles, not just your choreography muscle.</p><p id="2181505f-f113-80c1-ac1b-d74b19f7b48e" class=""><strong>SS: </strong>In the spirit of like community, people will sometimes post “This is how I made this thing” or behind the scenes. Everyone’s very open about sharing stuff; if you want to know more, you ask. It&#x27;s really, really cool.</p><p id="2181505f-f113-801b-b5e6-e20895f217c6" class=""><strong>MC:</strong> It&#x27;s a very welcoming environment, very supportive of new performers.</p><p id="2181505f-f113-8041-b85f-e20e1c9e8e0c" class=""><strong>DS:</strong> Open to everyone is kind of the vibe.</p><p id="2181505f-f113-8024-add3-e7fb30e97a14" class=""><strong>“People are like ‘that&#x27;s crazy, how do you do this?!’</strong></p><p id="2181505f-f113-8077-ba61-ee00e6eefbb3" class=""><strong>SS: </strong>People ask me if I ever feel uncomfortable taking most of my clothes in front of the audience…literally never, because of the community that’s created with the audience. You set ground rules as the host, but people coming to shows are largely respectable of that in the first place. So, like, yes, you’re doing something super vulnerable, but it doesn&#x27;t feel vulnerable and it doesn&#x27;t feel scary because they&#x27;re all there rooting for you.</p><p id="2181505f-f113-805c-81b6-d3e7cf4ebd15" class=""><strong>DS: </strong>Everyone is so supportive! Like nobody&#x27;s going to a show and just staying silent. Even if somebody is new and they don&#x27;t really know what they&#x27;re doing and they&#x27;re struggling on stage, people will cheer! We want everybody to feel good about themselves and it’s super awesome.</p><p id="2181505f-f113-8097-b21c-f8e1f0cd675e" class=""><strong>SS: </strong>The other benefit of in person is you get the energy. Real people, in person, not just like numbers that you&#x27;re looking at on a post. Sometimes it doesn&#x27;t even translate in a recorded video...sometimes I&#x27;ll watch my stuff back and I&#x27;d be like, wow. Why are people cheering so loud? Like, this doesn&#x27;t look that good. But in the room you can literally feel the energy coming off a person when they&#x27;re performing, and the crowd is giving it back to you, you’re giving it back to them…everyone is feeding off each other to enhance the performance. It’s really powerful.</p><p id="2181505f-f113-80fa-a76d-da73ea360876" class=""><strong>LLP: </strong>It kind of gives you an opportunity…to move between different types of gender presentation. You don’t have to specifically be a king or a queen, it&#x27;s really something that, certainly in our area, seems to be really accepted and loved.</p><p id="2181505f-f113-80ff-8e25-f0dd409f71f1" class=""><strong>DS: </strong>The biggest most pleasant surprise that I&#x27;ve had is just like how great the community is. I as a neurodivergent person can often feel awkward in a lot of situations, and I have found good company. I can just go up to people and admit like I&#x27;m feeling awkward. “Hi I&#x27;m just gonna stand with you guys and chitchat”. Everybody&#x27;s just super welcoming and I&#x27;ve met so many cool people, so many people I genuinely wanna hang out with.</p><p id="2181505f-f113-80b8-bbe7-e5166ab2263b" class=""><strong>TB: </strong>To have something so fun and cool and big feel, like, “casual” to me is great. People come and see like “that&#x27;s crazy, how do you do this?!” It&#x27;s just, my job! It&#x27;s a little thing I do, you know ,I go out for two hours a night and then I go home. The sort of non-novelty of it. It’s fun when it&#x27;s fun and it&#x27;s novel, but sometimes the idea that “this is what I get to be bored with, this is what gets to feel mundane to me” is like super sick. [...] The first performance [of Slutcracker] I&#x27;m like “oh my God, what did I get myself into”, performance two goes a little better and then by performance six, I&#x27;m like bored. “All right let me go out there for five minutes and shake my ass and like come backstage and read my book.”</p><p id="2181505f-f113-80bd-bdc5-e1151d600ea6" class=""><strong>SS: </strong>On a broader spectrum, this world that we live in, if you can think of it, sometimes there’s not a way to make that possible. But burlesque is absolutely that.</p><p id="2181505f-f113-8011-92c2-e64160b94fdf" class=""><strong>DS: </strong>It’s a fun community of neuro-divergent queer people and it&#x27;s so fun to be creative around other creative people and it&#x27;s just been such a journey.</p><p id="2181505f-f113-800a-bd1f-ed1db7d104a0" class=""><strong>TB: </strong>Also, specifically in Boston there&#x27;s like a crazy amount of body diversity in the burlesque space. I think one of the most healing things in my life is being backstage at Slutcracker and seeing all these people, different ages, sizes, tattoos/no tattoos, scars/no scars. There&#x27;s no time to think about your body when you&#x27;re doing a show. We&#x27;re just all walking around backstage completely naked like looking for some piece of our costume and literally no one cares and I think that was very very healing for me.</p><p id="2181505f-f113-802b-840f-d184f4ba7840" class=""><strong>Advice</strong></p><p id="2181505f-f113-80a7-823c-d7a6e6ad4e4e" class=""><strong>DS:</strong> One of the huge things I think is people to follow other performers on Instagram. That was areally good way for me to start to learn, like, what shows are in the area and what casting calls are there? What other open stages are there?</p><p id="2181505f-f113-8027-9a6f-c705498af32d" class=""><strong>MC:</strong> If you&#x27;re starting out, definitely go to shows. Going to shows really helped me figure out what I wanted to do and what I wanted to get out of it.</p><p id="2181505f-f113-803a-9f55-e98f964fc1f7" class=""><strong>SS: </strong>If you want to, try it. We only have one life. There&#x27;s no age limit, there’s no creativity barrier, literally anybody. Everybody has a real body. Taking artistic risk from a place of like, well, I&#x27;m going to have a blast, no matter what is like such a great place to create.</p><p id="2181505f-f113-80f0-893e-d9bce50cb089" class=""><strong>MC:</strong> Talk to people, like introduce yourself or even send messages to people. I&#x27;ve gotten a couple messages from people being like “I&#x27;m looking to start and I don&#x27;t know what to do”. It can be nerve-wracking!</p><p id="2181505f-f113-8061-ac9e-e53aa492e26b" class=""><strong>TB: </strong>If you really love moving your body and you&#x27;re interested in it, I would say, make the performance or nakedness aspect as small of a deal as you possibly can. I think people are stopping themselves from participating because they can&#x27;t get over that hump of “my body on stage” or just stage fright in general. I would hate for someone to miss out on the months of community, rehearsal and dance.</p><p id="2181505f-f113-8023-9ec0-dcf6127254b3" class=""><strong>DS:</strong><em><strong> </strong></em>My other advice for people: just showing up is good, volunteering to kitten is a really good way to get involved without like actually producing. [As a kitten,] you’re usually going around and collecting tips or clothes or both and a lot of times that&#x27;s just a good way to meet people without performing. Every show is always looking for them.</p><p id="2181505f-f113-800c-b3ec-e5c1c88643d7" class=""><strong>MC: </strong>Just apply, think of an idea, and just go for it.</p><p id="2181505f-f113-80aa-9a36-f939734578cf" class=""><strong>TB:</strong></p><p id="2181505f-f113-80e9-82f7-d12bc0f5fb35" class="">Even if you don&#x27;t think you’re hot, I think it&#x27;s kind of like, “if you smile in the mirror, you&#x27;re supposed to feel happier” like I&#x27;m on stage telling the audience that I&#x27;m hot, I want them to think I&#x27;m hot, all of this movement is something only a hot, confident person would do, then I guess I am just that!</p><p id="2181505f-f113-80c0-a2a2-eda0ce235cc3" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
