@@ -26,6 +26,7 @@ def parse_html_metadata(file_path):
                 'title': title,
                 'author': 'Unknown',
                 'date': datetime.fromtimestamp(file_path.stat().st_mtime).strftime('%Y-%m-%d'),
+                'issue': 'n/a',
                 'tags': '',
                 'file_path': str(file_path)
             }
@@ -44,6 +45,7 @@ def parse_html_metadata(file_path):
             'title': metadata.get('title', 'Untitled'),
             'author': metadata.get('author', 'Unknown'),
             'date': metadata.get('date', datetime.fromtimestamp(file_path.stat().st_mtime).strftime('%Y-%m-%d')),
+            'issue': metadata.get('issue', ''),
             'tags': metadata.get('tags', ''),
             'file_path': str(file_path)
         }
@@ -103,6 +105,7 @@ def generate_html_table(df, output_file="content.html"):
     table_html += '      <th>Title</th>\n'
     table_html += '      <th>Author</th>\n'
     table_html += '      <th>Date</th>\n'
+    table_html += '      <th>Issue</th>\n'
     table_html += '      <th>Tags</th>\n'
     table_html += '    </tr>\n'
     table_html += '  </thead>\n'
@@ -115,6 +118,7 @@ def generate_html_table(df, output_file="content.html"):
         table_html += f'      <td><a href="{link_path}">{row["title"]}</a></td>\n'
         table_html += f'      <td>{row["author"]}</td>\n'
         table_html += f'      <td>{row["date"]}</td>\n'
+        table_html += f'      <td>{row["issue"]}</td>\n'
         table_html += f'      <td>{row["tags"]}</td>\n'
         table_html += '    </tr>\n'
     
