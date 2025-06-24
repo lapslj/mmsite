@@ -1,0 +1,78 @@
+body {
+  font-family: 'Newsreader';
+  background-color:rgb(23, 17, 53);
+  color: #e6e6e6;
+  padding: 20px; /* Margins on website appearance */
+  font-size: 18px;
+  justify-content: left;
+}
+
+.blog-summary {
+  text-align: left;
+}
+
+table, th,td {
+  border: 1px solid;
+}
+
+.credit {
+    left: 0;
+    right: 0;
+    background-color: #5c7696;
+    padding: 2px;
+    font-style: italic;
+    color:rgb(255, 255, 255);
+    line-height: 103%;
+}
+
+.credit a{
+  color:rgb(92, 236, 87);
+}
+
+a {
+  color:#00ff00;
+}
+
+h2 {
+  font-size: 35px;
+  text-align: left;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+.sky {
+  font-family: 'Newsreader';
+  word-spacing: 2px;
+  line-height: 110%;
+}
+
+.sky-title {
+  font-family: 'Consolas';
+  font-size:30px;
+  padding: 10px;
+  text-shadow: 0 0 10px rgba(255, 0, 242, 0.7);
+  line-height: 110%;
+}
+
+.sky p{
+  text-indent: 10px;
+}
+
+.sky-question {
+  font-style:italic;
+}
+
+#sky-sig {
+  font-family: 'Mrs Sheppards';
+  font-size:30px;
+  padding: 10px;
+  line-height: 150%;
+  text-shadow: 0 0 10px rgba(255, 0, 242, 0.7);
+}
+
+/*Mobile design changes*/
+
+@media (max-width: 600px) {
+ 
+
+}
