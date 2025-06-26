@@ -114,11 +114,11 @@ def generate_html_table(df, output_file="content.html"):
     for _, row in df.iterrows():
         # Create relative link to the page
         link_path = f"m/{row['filename']}"
-        table_html += '    <tr>\n'
+        table_html += f'    <tr class="{row["tags"]}">\n'
         table_html += f'      <td><a href="{link_path}">{row["title"]}</a></td>\n'
         table_html += f'      <td>{row["author"]}</td>\n'
         table_html += f'      <td>{row["date"]}</td>\n'
-        table_html += f'      <td>{row["issue"]}</td>\n'
+        table_html += f'      <td class="i{row["issue"]}">{row["issue"]}</td>\n'
         table_html += f'      <td>{row["tags"]}</td>\n'
         table_html += '    </tr>\n'
     

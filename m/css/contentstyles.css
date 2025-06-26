@@ -11,6 +11,7 @@ body {
   text-align: left;
 }
 
+/* Default Classes */
 table, th,td {
   border: 1px solid;
 }
@@ -39,6 +40,57 @@ h2 {
   letter-spacing: 3px;
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
 }
+
+/*Vendor Article Styles */
+
+.vendor {
+  font-family:'Arial',sans-serif;
+}
+
+.vendor p{
+  text-indent: 2%;
+}
+
+.sideby {
+  display: flex;
+  flex-direction: row;
+  height:500px;
+  max-width: 20px;
+  padding: 5px;
+}
+
+.vendor img{
+  width: 500px;
+}
+
+.vertical {
+  width: 200px;
+}
+
+/* Neon Williams */
+.neontitle {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+  line-height: 10px;
+}
+
+.neontitle h3 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+.neontitle:hover {
+  transition: 0.3s;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
+}
+
+.neonbody {
+  background-color: black;
+}
+
+/*Dear Sky */
 
 .sky {
   font-family: 'Newsreader';
